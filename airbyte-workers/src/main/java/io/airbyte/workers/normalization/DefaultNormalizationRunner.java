@@ -123,6 +123,7 @@ public class DefaultNormalizationRunner implements NormalizationRunner {
         "--catalog", WorkerConstants.DESTINATION_CATALOG_JSON_FILENAME);
   }
 
+  @SuppressWarnings("PMD.AvoidLiteralsInIfCondition")
   private boolean runProcess(final String jobId,
                              final int attempt,
                              final Path jobRoot,
@@ -154,10 +155,10 @@ public class DefaultNormalizationRunner implements NormalizationRunner {
             .collect(Collectors.groupingBy(AirbyteMessage::getType));
 
         // picks up error logs from dbt
-        String dbtErrorStack = String.join("\n\t", streamFactory.getDbtErrors());
+        final String dbtErrorStack = String.join("\n\t", streamFactory.getDbtErrors());
 
         if (!"".equals(dbtErrorStack)) {
-          AirbyteMessage dbtTraceMessage = new AirbyteMessage()
+          final AirbyteMessage dbtTraceMessage = new AirbyteMessage()
               .withType(Type.TRACE)
               .withTrace(new AirbyteTraceMessage()
                   .withType(AirbyteTraceMessage.Type.ERROR)

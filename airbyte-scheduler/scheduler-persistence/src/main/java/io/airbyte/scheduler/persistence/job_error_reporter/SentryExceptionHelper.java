@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("PMD.AvoidLiteralsInIfCondition")
 public class SentryExceptionHelper {
 
   /**
